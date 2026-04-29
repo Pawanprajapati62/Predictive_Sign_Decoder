@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PSD - Platform for Sign Dialogue</title>
+    <meta name="description" content="Real-time sign language detection and translation platform">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- SocketIO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Animated background particles -->
+    <div class="bg-glow bg-glow--1"></div>
+    <div class="bg-glow bg-glow--2"></div>
+    <div class="bg-glow bg-glow--3"></div>
+
+    <div class="main-container">
+        <!-- Header -->
+        <header id="app-header">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='logo_v2.jpg') }}" alt="Sign Bridge Logo" class="logo">
+                <div class="title-group">
+                    <h1>PSD</h1>
+                    <span class="subtitle">Platform for Sign Dialogue</span>
+                </div>
+            </div>
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span class="status-text">System Active</span>
+            </div>
+        </header>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Left: Video Area -->
+            <section class="video-section" id="video-section">
+                <div class="video-container">
+                    <img src="{{ url_for('video_feed') }}" alt="Live Feed" class="video-feed" id="video-feed">
+                    <div class="overlay-sign">
+                        <span id="current-sign">Detecting...</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right: Controls -->
+            <aside class="control-panel" id="control-panel">
+                <!-- Buttons (Top) -->
+                <div class="button-group">
+                    <button onclick="speakText()" class="btn btn--primary" id="btn-speak">
+                        <span class="btn__icon">🔊</span>
+                        <span class="btn__label">Speak</span>
+                    </button>
+                    <button onclick="sendCommand('backspace')" class="btn btn--secondary" id="btn-backspace">
+                        <span class="btn__icon">⌫</span>
+                        <span class="btn__label">Backspace</span>
+                    </button>
+                    <button onclick="sendCommand('clear')" class="btn btn--danger" id="btn-clear">
+                        <span class="btn__icon">✖</span>
+                        <span class="btn__label">Clear</span>
+                    </button>
+                </div>
+
+                <!-- Sentence Builder -->
+                <div class="card card--sentence">
+                    <div class="card__header">
+                        <label class="card__label">Constructed Sentence</label>
+                        <div class="card__actions">
+                            <select id="lang-select" onchange="changeLanguage()" class="lang-select">
+                                <option value="en">English</option>
+                                <option value="hi">Hindi(हिंदी)</option>
+                            </select>
+                            <button onclick="copyToClipboard()" class="btn-icon" id="btn-copy-sentence" title="Copy to Clipboard">📋</button>
+                        </div>
+                    </div>
+                    <div id="sentence-display" class="card__body card__body--sentence"></div>
+                </div>
+
+                <!-- Incoming Speech -->
+                <div class="card card--speech">
+                    <div class="card__header">
+                        <label class="card__label">Incoming Speech</label>
+                        <div class="card__actions">
+                            <button id="mic-btn" onclick="toggleSpeech()" class="mic-btn">Microphone Off</button>
+                            <button onclick="copySpeechToClipboard()" class="btn-icon" id="btn-copy-speech" title="Copy Speech">📋</button>
+                        </div>
+                    </div>
+                    <div id="speech-display" class="card__body card__body--speech"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
