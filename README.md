@@ -1,13 +1,11 @@
 # Using DETR Transformers for Basic Sign Language Estimation
 More of a deep dive into training a DETR model from scratch and all the nuaces with getting object detection running. It was...fun. Anyway, here's a full walkthrough from me to you. Let me know how you go!
 
-## See it live and in action 📺 - Click the image!
-<a href=""><img src="https://i.imgur.com/Om4kU9a.png"/></a>
-Link to be added. 
+## See it live and in action 📺
 
 # Setup 🪛
 1. Install UV - `pip install uv`
-2. Clone the repo - `git clone https://github.com/nicknochnack/SignDETR .`
+2. Clone the repo - `(https://github.com/Pawanprajapati62/Predictive_Sign_Decoder.git).`
 3. Install all the dependencies `uv sync`
 
 # Collecting images 
