@@ -30,8 +30,3 @@ More of a deep dive into training a DETR model from scratch and all the nuaces w
 # Great resources: 
 - <a href='https://colab.research.google.com/github/facebookresearch/detr/blob/colab/notebooks/detr_demo.ipynb'>DETR walkthrough</a> - I used this a ton when initially working out how to do this. 
 
-
-# Who, When, Why?
-👨🏾‍💻 Author: Nick Renotte <br />
-📅 Version: 1.x<br />
-📜 License: This project is licensed under the MIT License </br>
